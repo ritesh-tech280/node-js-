@@ -3,8 +3,8 @@ const users = [
   { id: 2, name: "Aman", age: 17 },
   { id: 3, name: "Rahul", age: 22 },
 ];
-//function for updating the age of the user
 
+//function for updating the age of the user
 function updateUser(users, id, newAge) {
   const updatedUsers = [];
   for (const user of users) {
@@ -23,7 +23,7 @@ let updatedUser = [];
 updatedUser = updateUser(users, 3, 30);
 console.log("Updated users list : ", updatedUser);
 
-//function for searching the uaser
+//function for searching the user
 function searchUser(users, keyword) {
   let searchedUsers = [];
   for (const user of users) {
