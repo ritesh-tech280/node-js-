@@ -4,6 +4,10 @@ const data = require("./MOCK_DATA.json");
 const app = express();
 const PORT = 3000;
 app.use(express.json())
+
+app.get('/', (req, res) => {
+  res.send(`Hello this is home page Mr. ${req.query.name}`)
+})
  
 app.get("/users/:id", (req, res) => {
   const id = Number(req.params.id);
@@ -45,3 +49,5 @@ app.get("/users", (req, res) => {
 app.listen(PORT, () => {
   console.log(`server running on Port : ${PORT}`);
 });
+
+ 
