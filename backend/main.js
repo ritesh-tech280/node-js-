@@ -31,8 +31,7 @@ app.get("/users", (req, res) => {
   const html = user
     .map((user) => {
       return `<ul> <li>${user.first_name}</li></ul>`;
-    })
-    .join("");
+    }).join("");
    
    if(Number.isNaN(age)) {
     return res.status(400).send("Bad Request");
