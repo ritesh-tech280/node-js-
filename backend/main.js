@@ -28,8 +28,7 @@ app.get("/users", (req, res) => {
   if (!user) {
     return res.status(400).send("User not found");
   }
-  const html = user
-    .map((user) => {
+  const html = user.map((user) => {
       return `<ul> <li>${user.first_name}</li></ul>`;
     }).join("");
    
