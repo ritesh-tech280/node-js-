@@ -2,6 +2,7 @@ const express = require("express");
 let data = require("./MOCK_DATA.json");
 const fs = require("fs");
 
+
 const app = express();
 const PORT = 3000;
 app.use(express.urlencoded({ extended: false }));
@@ -10,29 +11,8 @@ app.use(express.json())
 app.get("/", (req, res) => {
   res.send("helo ");
 });
+ 
 
-// app.get("/api/users", (req, res) => {
-//   const age = Number(req.query.age);
-//   const user = data.filter((user) => user.age == age);
-//   if (!user) {
-//     return res.status(400).send("User not found");
-//   }
-//   const html = user
-//     .map((user) => {
-//       return `<ul> <li>${user.first_name}</li></ul>`;
-//     })
-//     .join("");
-
-//   if (Number.isNaN(age)) {
-//     return res.status(400).send("Bad Request");
-//   }
-
-//   if (user.length === 0) {
-//     return res.status(404).send("User not found ");
-//   } else {
-//     res.status(200).send(html);
-//   }
-// });
 app.get("/api/users/", (req, res) => {
   res.json(data);
 });
@@ -50,7 +30,21 @@ app.get("/api/users/:id", (req, res) => {
 });
 app.patch("/api/users/:id", (req, res) => {
   // update the user
-  res.json({ status: "pending" });
+  
+  const id = Number(req.params.id);
+  const useIndex = data.findIndex((user) => user.id == id)
+  if(Number.isNaN(id)){
+    return res.status(400).send('Bad Request')
+  }
+  if(useIndex == -1){
+    return res.status(404).send('User not Found')
+  }
+  data[useIndex] = { ...data[useIndex], ...req.body};
+
+  fs.writeFile('./MOCK_DATA.json', JSON.stringify(data) , (err, data) => {
+
+    res.json({ status: "success" });
+  })
 });
 app.delete("/api/users/:id", (req, res) => {
   const id =  parseInt(req.params.id);
