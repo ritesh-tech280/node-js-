@@ -31,6 +31,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/users/", (req, res) => {
+  //Best Practice Always add X at front of custom HEeader
+  res.setHeader("X-myName", "Ritesh Kumar");
+  console.log("This is custome Headers",req.headers)
   res.json(data);
 });
 app.get("/api/users/:id", (req, res) => {
