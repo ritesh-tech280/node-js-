@@ -1,25 +1,29 @@
- const User = require('../models/user')
+const User = require("../models/user");
 
-async function getAllUsers(req, res){
-    const allusers = await User.find({});
-    const html = `<ul>
+// Funtion for Getting all the users
+async function getAllUsers(req, res) {
+  const allusers = await User.find({});
+  const html = `<ul>
       ${allusers
         .map((user) => `<li> ${user.firstName} - ${user.email} </li> `)
         .join("")}
      </ul>`;
-    res.status(200).send(html);
-};
+  res.status(200).send(html);
+}
 
+// Function for getting user by id
 async function getUserById(req, res) {
-    const user = await User.findById(req.params.id);
-    res.json(user)
+  const user = await User.findById(req.params.id);
+  res.json(user);
 }
 
-async function updateUserById(req, res){
-    await User.findByIdAndUpdate(req.params.id , {lastName: "Singh"})
-    res.send({msg : "success"})
+// Function for update the user by id
+async function updateUserById(req, res) {
+  await User.findByIdAndUpdate(req.params.id, { lastName: "Singh" });
+  res.send({ msg: "success" });
 }
 
+// Function for creating user
 async function saveUser(req, res) {
   const body = req.body;
   const result = await User.create({
@@ -32,13 +36,16 @@ async function saveUser(req, res) {
   res.status(201).json({ msg: "Success", result });
 }
 
-async function  deleteUserById(req, res){
-  await User.findByIdAndDelete(req.params.id);
+// Function for delete the user
+async function deleteUserById(req, res) {
+  const deltedUser = await User.findByIdAndDelete(req.params.id);
+  res.send(deletedUser.id);
 }
-
-
 
 module.exports = {
-    getAllUsers , getUserById, updateUserById , saveUser, deleteUserById
-}
-
+  getAllUsers,
+  getUserById,
+  updateUserById,
+  saveUser,
+  deleteUserById,
+};
