@@ -14,6 +14,7 @@ mongoose
     console.log("MongoDB Error", err);
   });
 
+  //mongo Db schema
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -35,6 +36,8 @@ const userSchema = new mongoose.Schema({
 });
 
 app.use(express.urlencoded({ extended: false }));
+
+//mongo db Model
 const User = mongoose.model("user", userSchema);
 
 app.get("/api/users", async (req, res) => {
