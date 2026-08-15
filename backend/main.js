@@ -10,13 +10,7 @@ app.use(express.json());
 //Using Middleware
 app.use((req, res, next) => {
   console.log("Helllo from middle ware 1");
-  fs.writeFile(
-    "log.txt",
-    `This ${req.method} request come from middleware 1 from ${req.path} `,
-    (err, data) => {
-      next();
-    },
-  );
+ 
 });
 // writting middleware
 const myBlogger = function (req, res, next) {
