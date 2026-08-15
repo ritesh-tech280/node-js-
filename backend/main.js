@@ -18,7 +18,7 @@ app.use((req, res, next) => {
     },
   );
 });
-// writting middleware 
+// writting middleware
 const myBlogger = function (req, res, next) {
   console.log("BLOGGED");
   next();
@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 app.get("/api/users/", (req, res) => {
   //Best Practice Always add X at front of custom HEeader
   res.setHeader("X-myName", "Ritesh Kumar");
-  console.log("This is custome Headers",req.headers)
+  console.log("This is custome Headers", req.headers);
   res.json(data);
 });
 app.get("/api/users/:id", (req, res) => {
@@ -76,9 +76,12 @@ app.delete("/api/users/:id", (req, res) => {
 
 app.post("/api/users/", (req, res) => {
   const body = req.body;
+  if(!body.first_name || !body.last_name || !body.email || !body.gender || !body.age){
+    res.status(400).json({ error : "Bad Request"})
+  }
   data.push({ ...body, id: data.length + 1 });
   fs.writeFile("./MOCK_DATA.json", JSON.stringify(data), (err, data) => {
-    res.json({ status: "Success" });
+    res.status(201).json({ status: "Success" });
   });
 });
 
