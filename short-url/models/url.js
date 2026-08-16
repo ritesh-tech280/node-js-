@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// schema for URL shortner 
 const urlScheme = new mongoose.Schema(
   {
     shortId: {
@@ -9,7 +10,7 @@ const urlScheme = new mongoose.Schema(
     },
     redirectURL: {
       type: String,
-      require: true,
+     
     },
     visitHistory: [{ timestamp: { type: Number } }],
   },
@@ -17,6 +18,8 @@ const urlScheme = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+// URl model 
 
 const URl = mongoose.model('url',urlScheme);
 
