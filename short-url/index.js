@@ -2,6 +2,7 @@ const express = require("express");
 const urlRoute = require("./router/url");
 const URl = require("./models/url");
 const staticRoute = require('./router/staticRoute')
+const userRoute = require("./router/user")
 const path = require("path");
 const { connectDB } = require("./connection");
 
@@ -16,12 +17,13 @@ connectDB("mongodb://localhost:27017/urlShort").then(() =>
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended : false}))
-app.use("/url", urlRoute);
-app.use('/' , staticRoute)
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+app.use("/url", urlRoute);
+app.use('/user', userRoute)
+app.use('/' , staticRoute)
 // visit the url
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
