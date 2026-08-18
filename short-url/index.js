@@ -1,10 +1,12 @@
 const express = require("express");
-const urlRoute = require("./router/url");
 const URl = require("./models/url");
-const staticRoute = require('./router/staticRoute')
-const userRoute = require("./router/user")
 const path = require("path");
 const { connectDB } = require("./connection");
+
+
+const userRoute = require("./router/user")
+const staticRoute = require('./router/staticRoute')
+const urlRoute = require("./router/url");
 
 const app = express();
 const PORT = 3000;
