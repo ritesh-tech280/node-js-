@@ -4,6 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
+     <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #333333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #111111;
+      margin-bottom: 24px;
+    }
+    div {
+      background-color: #ffffff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 400px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #555555;
+    }
+    input {
+      font-size: 15px;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      background-color: #ffffff;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input:focus {
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+    }
+    button {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #0066cc;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #0052a3;
+    }
+    button:active {
+      background-color: #004080;
+    }
+  </style>
   </head>
   <body>
     <h1>Signup</h1>
@@ -20,7 +94,7 @@
         />
 
         <label for="password">Password</label>
-        <input type="text" name="password" placeholder="Password" />
+        <input type="password" name="password" placeholder="Password" />
         <button type="submit">Signup</button>
       </form>
     </div>
