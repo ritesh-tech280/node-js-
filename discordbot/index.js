@@ -11,6 +11,7 @@ client.on('messageCreate', (message) => {
         const url = message.content.split('create')[1];
         return message.reply({ content : 'Generating short id for' + url});
     }
+    
     message.reply({ 
         content : "Hi I am Bot",
 })
@@ -18,7 +19,7 @@ client.on('messageCreate', (message) => {
 
 client.on('interactionCreate', (interaction) => {
     console.log(interaction)
-    interaction.reply("pong")
+    interaction.reply("How are you")
 })
 console.log("Token Loaded", !!process.env.DISCORD_TOKEN)
 client.login(process.env.DISCORD_TOKEN)
