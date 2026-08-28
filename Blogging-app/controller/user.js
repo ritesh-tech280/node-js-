@@ -22,8 +22,8 @@ async function createUser(req, res) {
 
 async function loginUser(req, res){
     const { email , password }  = req.body ;
-
-    const user =  await User.findOne( { email , password});
+    const user =  await User.matchPassword(email , password);
+    
     
     if(!user) {
         res.redirect('/user/signin');
