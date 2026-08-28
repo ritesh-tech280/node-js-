@@ -1,28 +1,82 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-semibold" href="#">BlogX</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Add Blog</a>
-        </li>
-       
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-           Ritesh Kumar
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Logout</a></li>
-            
-          </ul>
-        </li>
-      </ul>
+<header class="text-gray-400 bg-gray-900 body-font">
+  <div
+    class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+  >
+    <!-- Logo -->
+    <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        class="w-10 h-10 text-white p-2 bg-red-500 rounded-full"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+        ></path>
+      </svg>
+
+      <span class="ml-3 text-xl">Blogify</span>
+    </a>
+
+    <!-- Navigation -->
+    <nav
+      class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"
+    >
+      <a class="mr-5 hover:text-white cursor-pointer">Home</a>
+      <a class="mr-5 hover:text-white cursor-pointer">About</a>
+      <a class="mr-5 hover:text-white cursor-pointer">Blogs</a>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="relative gap-4 mt-4 md:mt-0 mr-4">
+      <input
+        type="text"
+        placeholder="Search..."
+        class="w-40 md:w-48 bg-gray-800 border border-gray-700 rounded-lg py-2 px-4 pr-10 text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+      />
+
+      <!-- Search Icon -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        class="absolute right-3 top-2.5 w-5 h-5 text-gray-400"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-4-4"></path>
+      </svg>
+    </div>
+
+    <div class="flex gap-4">
+      <!-- Button -->
+      <button
+        class="inline-flex items-center border border-gray-700 bg-gray-800  py-2 px-4 focus:outline-none hover:bg-red-600 rounded-lg text-white text-base mt-4 md:mt-0"
+      >
+        + Add Blogs
+      </button>
+      <button  
+        class="inline-flex items-center bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded-lg text-white text-base mt-4 md:mt-0"
+      >
+        Signup
+
+        <svg
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          class="w-4 h-4 ml-1"
+          viewBox="0 0 24 24"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
     </div>
   </div>
-</nav>
+</header>
