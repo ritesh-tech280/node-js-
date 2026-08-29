@@ -39,9 +39,15 @@ async function loginUser(req, res){
     
 }
 
+function logout(req,res){
+  return res.clearCookie('token').redirect('/')
+
+}
+
 module.exports = {
   renderSignIn,
   renderSignup,
   createUser,
   loginUser ,
+  logout ,
 };

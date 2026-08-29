@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Add Blogs</title>
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen"> 
+    <%- include('./partials/nav') %>
+
+
+<div class="w-full max-w-2xl mx-auto mt-10 px-4">
+  <form
+    action="/blog/add"
+    method="post"
+    class="bg-gray-900 border border-gray-800 rounded-xl p-6 md:p-8 shadow-lg"
+  >
+
+    <!-- Heading -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-white">
+        Create New Blog
+      </h2>
+      <p class="mt-1 text-sm text-gray-400">
+        Share your thoughts with the world.
+      </p>
+    </div>
+
+    <!-- Title -->
+    <div class="mb-5">
+      <label
+        for="title"
+        class="block mb-2 text-sm font-medium text-gray-200"
+      >
+        Blog Title
+      </label>
+
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="Enter your blog title"
+        required
+        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition"
+      />
+    </div>
+
+    <!-- Content -->
+    <div class="mb-5">
+      <label
+        for="content"
+        class="block mb-2 text-sm font-medium text-gray-200"
+      >
+        Content
+      </label>
+
+      <textarea
+       
+        name="body"
+        rows="5"
+        placeholder="Write your thoughts here..."
+        required
+        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 outline-none resize-y focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition"
+      ></textarea>
+    </div>
+
+    <!-- Cover Image -->
+    <div class="mb-6">
+      <label
+        for="coverImage"
+        class="block mb-2 text-sm font-medium text-gray-200"
+      >
+        Cover Image
+      </label>
+
+      <input
+        type="file"
+        name="coverImage"
+        accept="image/*"
+        class="block w-full text-sm text-gray-400
+        bg-gray-800 border border-gray-700 rounded-lg
+        cursor-pointer
+        file:mr-4
+        file:py-2
+        file:px-4
+        file:rounded-lg
+        file:border-0
+        file:text-sm
+        file:font-medium
+        file:bg-red-500
+        file:text-white
+        hover:file:bg-red-600"
+      />
+    </div>
+
+    <!-- Submit -->
+    <button
+      type="submit"
+      class="w-full py-3 px-5 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500/40"
+    >
+      Add Blog
+    </button>
+
+  </form>
+</div>
+
+
+
+    <%- include('./partials/scripts') %>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-<header class="text-gray-400 bg-gray-900 body-font">
+<header class="text-gray-400 bg-gray-900 body-font border-b-1 border-gray-800 ">
   <div
     class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
   >
@@ -26,9 +26,14 @@
     <nav
       class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"
     >
-      <a class="mr-5 hover:text-white cursor-pointer">Home</a>
+      <a href="/" class="mr-5 hover:text-white cursor-pointer">Home</a>
       <a class="mr-5 hover:text-white cursor-pointer">About</a>
       <a class="mr-5 hover:text-white cursor-pointer">Blogs</a>
+      <% if (locals.user) { %>
+       
+        <a href="/user/logout" class="mr-5 hover:text-white cursor-pointer">logout</a>
+      <% } %>
+    
     </nav>
 
     <!-- Search Bar -->
@@ -61,10 +66,26 @@
       >
         + Add Blogs
       </button>
-      <button  
+      <button class="inline-flex items-center bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded-lg text-white text-base mt-4 md:mt-0">
+       
+        <%- `${locals.user.email.split("@")[0].charAt(0).toUpperCase() + locals.user.email.split('@')[0].slice(1) || "Guest"}`  %>
+         
+      </button>
+       
+    </div>
+     <% }
+     else { %>
+      <div class="flex gap-4">
+  
+      <a href="/user/signup"
+        class="inline-flex items-center border border-gray-700 bg-gray-800  py-2 px-4 focus:outline-none hover:bg-red-600 rounded-lg text-white text-base mt-4 md:mt-0"
+      >
+        SignUp
+      </a>
+      <a  href="/user/signin"
         class="inline-flex items-center bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded-lg text-white text-base mt-4 md:mt-0"
       >
-        <%- `${locals.user.email.split("@")[0].charAt(0).toUpperCase() + locals.user.email.split('@')[0].slice(1) || "Guest"}`  %>
+        SignIn
 
         <svg
           fill="none"
@@ -77,9 +98,12 @@
         >
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
-      </button>
+      </a>
     </div>
-     <% } %>
+    <% }  %>
+      
+    
+       
    
   </div>
 </header>

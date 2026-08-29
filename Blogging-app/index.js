@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const userRouter = require('./router/user')
+const blogRouter = require('./router/blog')
 const { connectDB } = require('./connection')
 const cookieParser = require('cookie-parser')
 const path = require('path');
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(checkForAuthentication('token'))
 
 app.use('/user', userRouter);
+app.use('/blog', blogRouter)
 
 app.get('/' , (req, res) => {
     
@@ -25,5 +27,7 @@ app.get('/' , (req, res) => {
         user : req.user
     })
 })
+
+ 
 
 app.listen(PORT, ()=> console.log(`Server running on : ${PORT}`))
