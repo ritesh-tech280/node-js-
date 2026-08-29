@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { createTokenForUser } = require('../services/authentication')
 
 //Function fo redireting the signup
 function renderSignup(req, res) {
@@ -21,14 +22,21 @@ async function createUser(req, res) {
 }
 
 async function loginUser(req, res){
-    const { email , password }  = req.body ;
-    const user =  await User.matchPassword(email , password);
+    const { email , password }  = req.body;
+
+    try {
+      const token =  await User.createTokenForUser(email , password);
+      if(!token) {
+          res.redirect('/user/signin');
+      }
+        return res.cookie('token' , token).redirect('/')
+      
+    } catch (error) {
+      return res.render('signin', {
+        error: 'Incorrect Email or Password'
+      })
+    }
     
-    
-    if(!user) {
-        res.redirect('/user/signin');
-    } 
-    return res.redirect('/')
 }
 
 module.exports = {
