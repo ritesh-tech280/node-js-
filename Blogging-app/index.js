@@ -4,6 +4,7 @@ const userRouter = require('./router/user')
 const blogRouter = require('./router/blog')
 const { connectDB } = require('./connection')
 const cookieParser = require('cookie-parser')
+
 const path = require('path');
 const { checkForAuthentication } = require('./middleware/authentication');
 const PORT = 8000 ;
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended : false }));
 app.use(express.json())
 app.use(cookieParser());
 app.use(checkForAuthentication('token'))
+
 
 app.use('/user', userRouter);
 app.use('/blog', blogRouter)

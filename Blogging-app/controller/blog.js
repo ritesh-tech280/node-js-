@@ -5,13 +5,15 @@ function renderBlogPage(req,res){
 }
 
 async function addBlog(req ,res){
-    console.log(req.body)
+ 
     const { title , body } = req.body ;
     await Blog.create({
         title , 
-        body
+        body ,
+        createdBy: req.user._id ,
+        coverImageUrl : `/uploads/${req.file.filename}`
     })
-    return res.redirect('/')
+    return res.redirect(`/blog`)
 
 }
 
