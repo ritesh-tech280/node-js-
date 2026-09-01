@@ -17,7 +17,14 @@ async function addBlog(req ,res){
 
 }
 
+
+async function getAllBlogs(req,res){
+    const allBlogs = await Blog.find({});
+    return allBlogs ;
+}
+
 module.exports = {
     renderBlogPage,
-    addBlog
+    addBlog ,
+    getAllBlogs ,
 }
