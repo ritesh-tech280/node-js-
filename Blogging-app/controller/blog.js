@@ -23,8 +23,13 @@ async function getAllBlogs(req,res){
     return allBlogs ;
 }
 
+
+function renderAllBlogs(req,res){
+    return res.render('blogs')
+}
 module.exports = {
     renderBlogPage,
     addBlog ,
     getAllBlogs ,
+    renderAllBlogs
 }

@@ -1,8 +1,9 @@
 const { Router } = require('express');
-const { renderBlogPage, addBlog } = require('../controller/blog')
+const { renderBlogPage, addBlog , renderAllBlogs } = require('../controller/blog')
 const multer = require('multer')
 const path = require('path')
 const router = Router();
+
 
 
 const storage = multer.diskStorage({
@@ -17,6 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
+router.get('/' , renderAllBlogs)
 router.get('/add', renderBlogPage);
 router.post('/add', upload.single('coverImage') ,  addBlog)
  

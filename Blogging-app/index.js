@@ -24,7 +24,8 @@ app.use(express.static(path.resolve('./public')))
 
 
 app.use('/user', userRouter);
-app.use('/blog', blogRouter)
+app.use('/blog', blogRouter);
+
 
 app.get('/' , async (req, res) => {
     const allBlogs = await getAllBlogs();
