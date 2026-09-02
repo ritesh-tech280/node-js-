@@ -16,6 +16,7 @@ async function createUser(req, res) {
     name,
     email,
     password,
+    profileUrl : `/images/${req.file.filename}`
   });
 
  return  res.redirect("/");

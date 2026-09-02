@@ -13,7 +13,7 @@ async function addBlog(req ,res){
         createdBy: req.user._id ,
         coverImageUrl : `/uploads/${req.file.filename}`
     })
-    return res.redirect(`/blog`)
+    return res.redirect(`/`)
 
 }
 

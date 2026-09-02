@@ -15,8 +15,38 @@
         <form
           action="/user/signup"
           method="post"
+          enctype="multipart/form-data"
           class="bg-gray-800 border border-gray-700 rounded-xl p-8 shadow-lg"
         >
+
+          <!-- Cover Image -->
+    <div class="mb-6">
+      <label
+        for="profileUrl"
+        class="block mb-2 text-sm font-medium text-gray-200"
+      >
+        Profile Picture
+      </label>
+
+      <input
+        type="file"
+        name="profileUrl"
+        accept="image/*"
+        class="block w-full text-sm text-gray-400
+        bg-gray-900 border border-gray-700 rounded-lg
+        cursor-pointer
+        file:mr-4
+        file:py-2
+        file:px-4
+        file:rounded-lg
+        file:border-0
+        file:text-sm
+        file:font-medium
+        file:bg-red-500
+        file:text-white
+        hover:file:bg-red-600"
+      />
+    </div>
           <!-- Name -->
           <div class="mb-6">
             <label
