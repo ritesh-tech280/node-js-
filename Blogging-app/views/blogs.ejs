@@ -15,7 +15,10 @@
 
   <!-- Blog -->
 
-  <% blogs %>
+  
+
+    
+ 
   <main class="container mx-auto px-5 py-10">
 
     <article class="max-w-4xl mx-auto">
@@ -65,23 +68,29 @@
       >
         <%= blog.body %>
       </div>
-
-
+       <div>
+          <img src="<%= blog.createdBy.profileUrl %>" width="50">
+          <span><%= blog.createdBy.name %> </span> 
+           
+        </div>
+       
       <!-- Bottom -->
       <div class="mt-12 pt-6 border-t border-gray-800">
-
+       
         <a
           href="/"
           class="inline-flex items-center px-5 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition"
         >
           ← Back to Blogs
         </a>
-
+       
+       
       </div>
 
     </article>
 
   </main>
+  
 
 </body>
 </html>
