@@ -1,61 +1,40 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
- <%- include('./partials/head') %>
- <title>Home Page</title>
- </head>
-<body>
-    <%- include('./partials/nav')  %>
-     
-    
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+<head>
+  <%- include('./partials/head') %>
+  <title>Home | BlogSpace</title>
+</head>
 
-  <% blogs.forEach(blog => { %>
+<body class="bg-gray-950 text-white">
 
-    <div
-      class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:border-gray-700 hover:shadow-xl transition duration-300"
-    >
+  <%- include('./partials/nav') %>
 
-      <!-- Cover Image -->
-      <a href="#">
-        <img
-          class="w-full h-52 object-cover"
-          src="<%= blog.coverImageUrl %>"
-          alt="<%= blog.title %>"
-        />
-      </a>
+  <main>
 
-      <!-- Card Content -->
-      <div class="p-5">
+    <!-- Hero -->
+    <section class="border-b border-gray-800">
+      <div class="max-w-7xl mx-auto px-6 py-20 text-center">
 
-        <!-- Title -->
-        <a href="#">
-          <h5
-            class="mb-3 text-xl font-semibold tracking-tight text-white hover:text-red-400 transition"
-          >
-            <%= blog.title %>
-          </h5>
-        </a>
+        <span class="inline-block mb-4 px-4 py-1.5 rounded-full bg-red-500/10 text-red-400 text-sm font-medium">
+          Welcome to BlogSpace
+        </span>
 
-        <!-- Content -->
-        <p class="mb-5 text-gray-400 leading-relaxed">
-          <%= blog.body %>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+          Ideas, Stories & <span class="text-red-500">Knowledge</span>
+        </h1>
+
+        <p class="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed mb-8">
+          Discover interesting stories, tutorials, experiences and ideas
+          written by passionate creators.
         </p>
 
-        <!-- Read More Button -->
         <a
-          href="/blog/<%= blog.id  %>"
-          class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500/40 transition"
+          href="#blogs"
+          class="inline-flex items-center px-6 py-3 rounded-lg bg-red-500 hover:bg-red-600 font-medium transition"
         >
-          Read more
-
-          <svg
-            class="w-4 h-4 ml-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
+          Explore Blogs
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24">
             <path
               stroke="currentColor"
               stroke-linecap="round"
@@ -67,17 +46,138 @@
         </a>
 
       </div>
-    </div>
-
-  <% }); %>
-
-</div>
- 
+    </section>
 
 
-    
- 
+    <!-- Latest Blogs -->
+    <section id="blogs" class="max-w-7xl mx-auto px-6 py-16">
 
-   <%- include('./partials/scripts')  %>
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="text-red-400 text-sm font-medium mb-2">LATEST POSTS</p>
+          <h2 class="text-3xl font-bold">Explore Our Blogs</h2>
+        </div>
+
+         
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <% blogs.forEach(blog => { %>
+
+          <article class="group bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-red-500/40 transition duration-300">
+
+            <a href="/blog/<%= blog.id %>">
+              <img
+                class="w-full h-52 object-cover group-hover:scale-105 transition duration-500"
+                src="<%= blog.coverImageUrl %>"
+                alt="<%= blog.title %>"
+              />
+            </a>
+
+            <div class="p-5">
+
+              <span class="text-xs text-red-400 font-medium">
+                BLOG
+              </span>
+
+              <a href="/blog/<%= blog.id %>">
+                <h3 class="mt-2 mb-3 text-xl font-semibold text-white group-hover:text-red-400 transition">
+                  <%= blog.title %>
+                </h3>
+              </a>
+
+              <p class="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-5">
+                <%= blog.body %>
+              </p>
+
+              <a
+                href="/blog/<%= blog.id %>"
+                class="text-sm font-medium text-white hover:text-red-400 transition"
+              >
+                Read article →
+              </a>
+
+            </div>
+          </article>
+
+        <% }); %>
+
+      </div>
+
+    </section>
+
+
+    <!-- Topics -->
+    <section class="border-y border-gray-800 bg-gray-900/40">
+      <div class="max-w-7xl mx-auto px-6 py-16">
+
+        <div class="text-center mb-10">
+          <p class="text-red-400 text-sm font-medium mb-2">DISCOVER</p>
+          <h2 class="text-3xl font-bold">Explore Topics</h2>
+          <p class="text-gray-400 mt-3">
+            Find something interesting and start reading.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+          <a href="#" class="p-6 bg-gray-900 border border-gray-800 rounded-xl hover:border-red-500 hover:-translate-y-1 transition">
+            <div class="text-2xl mb-3">💻</div>
+            <h3 class="font-semibold">Technology</h3>
+            <p class="text-sm text-gray-500 mt-1">Tech & development</p>
+          </a>
+
+          <a href="#" class="p-6 bg-gray-900 border border-gray-800 rounded-xl hover:border-red-500 hover:-translate-y-1 transition">
+            <div class="text-2xl mb-3">🚀</div>
+            <h3 class="font-semibold">Programming</h3>
+            <p class="text-sm text-gray-500 mt-1">Code & tutorials</p>
+          </a>
+
+          <a href="#" class="p-6 bg-gray-900 border border-gray-800 rounded-xl hover:border-red-500 hover:-translate-y-1 transition">
+            <div class="text-2xl mb-3">💡</div>
+            <h3 class="font-semibold">Ideas</h3>
+            <p class="text-sm text-gray-500 mt-1">Thoughts & insights</p>
+          </a>
+
+          <a href="#" class="p-6 bg-gray-900 border border-gray-800 rounded-xl hover:border-red-500 hover:-translate-y-1 transition">
+            <div class="text-2xl mb-3">📚</div>
+            <h3 class="font-semibold">Learning</h3>
+            <p class="text-sm text-gray-500 mt-1">Learn something new</p>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="max-w-4xl mx-auto px-6 py-20 text-center">
+
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+        Have a story to share?
+      </h2>
+
+      <p class="text-gray-400 mb-8">
+        Write your own article and share your ideas with the community.
+      </p>
+
+      <a
+        href="/blog/add"
+        class="inline-block px-6 py-3 bg-red-500 hover:bg-red-600 rounded-lg font-medium transition"
+      >
+        Write a Blog
+      </a>
+
+    </section>
+
+  </main>
+
+  <%- include('./partials/footer') %>
+
+  <%- include('./partials/scripts') %>
+
 </body>
 </html>
+ 
