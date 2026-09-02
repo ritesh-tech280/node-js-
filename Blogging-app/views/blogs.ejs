@@ -68,11 +68,62 @@
       >
         <%= blog.body %>
       </div>
-       <div>
-          <img src="<%= blog.createdBy.profileUrl %>" width="50">
-          <span><%= blog.createdBy.name %> </span> 
-           
+       <div class="flex gap-3 items-center mt-5">
+          <img src="<%= blog.createdBy.profileUrl %>" width="50" class="rounded-full">  <span><%= blog.createdBy.name %> </span> 
         </div>
+        
+
+        <% if (locals.user) { %>
+         
+          <div class="mt-6 max-w-2xl p-4 bg-gray-900 rounded-xl shadow-md">
+     <h2 class="text-xl font-semibold text-gray-100 pb-2 border-b border-gray-600 tracking-wide">
+       Comments
+     </h2>
+     
+     <form action="/blog/<%= blog._id %>" method="post" class="mt-4 flex flex-col sm:flex-row gap-3">
+       <input 
+         type="text" 
+         placeholder="Enter your comment..." 
+         name="content"
+         class="flex-1 px-4 py-2.5 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 text-sm"
+       >
+       <button 
+         type="submit" 
+         class="px-5 py-2.5 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+       >
+         Add Comment
+       </button>
+     </form>
+    
+     
+        
+   </div>
+        <% } %>
+       
+        <% comments.forEach(comment => { %> 
+          
+         <div class="p-4 mt-5 max-w-2xl mb-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700/50 shadow-sm transition duration-200 hover:shadow-md">
+ 
+  <div class="flex gap-3 items-center">
+    <img 
+      src="<%= comment.createdBy.profileUrl %>" 
+      alt="<%= comment.createdBy.name %>"
+      class="w-10 h-10 rounded-full object-cover ring-2 ring-gray-100 dark:ring-gray-700"
+    >  
+    <span class="font-semibold text-gray-800 dark:text-gray-200 text-sm tracking-wide">
+      <%= comment.createdBy.name %>
+    </span> 
+  </div>
+
+   
+  <p class="mt-2.5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed pl-13 break-words"> 
+    <%= comment.content %>
+  </p>
+</div>
+
+      <%   });  %>
+         
+    
        
       <!-- Bottom -->
       <div class="mt-12 pt-6 border-t border-gray-800">
