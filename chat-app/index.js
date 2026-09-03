@@ -11,8 +11,11 @@ const io = new Server(server);
 app.use(express.static('./public'))
 
 io.on('connection', (socket) => {
-    socket.on('user-message' , message => {
-       io.emit('message' , message);
+    socket.on('user-message' ,(text) => {
+       io.emit('message' ,  {
+        senderId : socket.id,
+        text : text, 
+       });
     })
 });
 

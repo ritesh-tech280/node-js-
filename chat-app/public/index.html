@@ -4,35 +4,226 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat App</title>
+    <style>
+      :root {
+        --bg-body: #0f172a;
+        --chat-card: #1e293b;
+        --border-color: #334155;
+        --primary: #38bdf8;
+        --primary-hover: #0284c7;
+        --bubble-bg: #334155;
+        --text-primary: #f8fafc;
+        --sent-bg: #38bdf8;
+        --sent-text: #0f172a;
+        --received-bg: #334155;
+        --received-text: #f8fafc;
+        --text-secondary: #94a3b8;
+      }
 
-       
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+
+      .chat-wrapper {
+        width: 100%;
+        max-width: 440px;
+        height: 640px;
+        background: var(--chat-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.5),
+          0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      }
+
+      .chat-header {
+        padding: 1rem 1.25rem;
+        background: rgba(15, 23, 42, 0.6);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        background-color: #22c55e;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #22c55e;
+      }
+
+      .chat-header h1 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      #messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        scroll-behavior: smooth;
+      }
+
+      #messages::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      #messages::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+      }
+
+      /* Base Bubble */
+      .bubble {
+        max-width: 75%;
+        padding: 0.65rem 0.95rem;
+        border-radius: 14px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        word-break: break-word;
+      }
+
+      .chat-input-area {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.85rem 1rem;
+        background: rgba(15, 23, 42, 0.4);
+        border-top: 1px solid var(--border-color);
+      }
+
+      #message {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        background-color: rgba(15, 23, 42, 0.8);
+        color: var(--text-primary);
+        outline: none;
+        font-size: 0.95rem;
+        transition: border-color 0.2s;
+      }
+
+      #message:focus {
+        border-color: var(--primary);
+      }
+
+      #message::placeholder {
+        color: var(--text-secondary);
+      }
+
+      #send {
+        padding: 0.75rem 1.25rem;
+        background-color: var(--primary);
+        color: #0f172a;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition:
+          background-color 0.15s,
+          transform 0.1s;
+      }
+
+      #send:hover {
+        background-color: var(--primary-hover);
+      }
+
+      #send:active {
+        transform: scale(0.98);
+      }
+
+      /* Received Messages (Left) */
+      .bubble.received {
+        align-self: flex-start;
+        background-color: var(--received-bg);
+        color: var(--received-text);
+        border-bottom-left-radius: 3px;
+      }
+
+      /* Sent Messages (Right) */
+      .bubble.sent {
+        align-self: flex-end;
+        background-color: var(--sent-bg);
+        color: var(--sent-text);
+        font-weight: 500;
+        border-bottom-right-radius: 3px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Chatting</h1>
+    <div class="chat-wrapper">
+      <div class="chat-header">
+        <span class="status-dot"></span>
+        <h1>Live Chat</h1>
+      </div>
 
-    <input type="text" id="message" placeholder="Enter your message" />
-    <button id="send">Send</button>
+      <div id="messages"></div>
 
-    <div id="messages"></div>
+      <div class="chat-input-area">
+        <input
+          type="text"
+          id="message"
+          placeholder="Type a message..."
+          autocomplete="off"
+        />
+        <button id="send">Send</button>
+      </div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
-
     <script>
       const socket = io();
       const messageInput = document.getElementById("message");
       const sendBtn = document.getElementById("send");
       const allMessages = document.getElementById("messages");
 
-      socket.on("message", (message) => {
-        const p = document.createElement('p');
-        p.innerText = message;
-        allMessages.appendChild(p);
-      });
-      sendBtn.addEventListener("click", () => {
-        const message = messageInput.value;
-        console.log(message);
+      function sendMessage() {
+        const message = messageInput.value.trim();
+        if (!message) return;
+
         socket.emit("user-message", message);
         messageInput.value = "";
+      }
+
+      socket.on("message", (data) => {
+        const bubble = document.createElement("div");
+
+        const isSelf = data.senderId === socket.id;
+        bubble.className = `bubble ${isSelf ? "sent" : "received"}`;
+        bubble.textContent = data.text;
+        allMessages.appendChild(bubble);
+
+        allMessages.scrollTop = allMessages.scrollHeight;
+      });
+
+      sendBtn.addEventListener("click", sendMessage);
+
+      messageInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
       });
     </script>
   </body>
